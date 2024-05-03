@@ -30,7 +30,7 @@ public class Client {
                 + "\n\tfirstName = " + firstName
                 + ", lastName = " + lastName
                 + ", email = " + email
-                + ",\n\tpet = " + pet
+                + ",\n\tpet {" + pet
                 + "\n}";
     }
 

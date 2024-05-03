@@ -21,10 +21,14 @@ public class ApplicationRunner {
                 String input = Main.SCANNER.nextLine();
                 if(input.equals("Y")) {
                     System.out.println("Adding a new pet.");
+
                     Pet pet = petService.registerNewPet();
-                    client.setPet(pet);
-                    pet.setOwnerName(client.getFirstName() + " " + client.getLastName());
-                    System.out.println("Pet has been added.");
+
+                    if(pet != null) {
+                        client.setPet(pet);
+                        pet.setOwnerName(client.getFirstName() + " " + client.getLastName());
+                        System.out.println("Pet has been added.");
+                    }
 
                     System.out.println(client);
 
