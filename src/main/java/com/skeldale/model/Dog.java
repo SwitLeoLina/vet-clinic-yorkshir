@@ -9,8 +9,7 @@ public class Dog extends Pet {
     @Override
     public String toString() {
         return super.toString()
-                + ", size = " + size
-                + "\n\t}";
+                + ", {size = " + size + "}";
     }
 
     @Override
