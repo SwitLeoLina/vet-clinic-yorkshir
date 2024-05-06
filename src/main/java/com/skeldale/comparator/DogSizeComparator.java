@@ -7,6 +7,7 @@ import java.util.Comparator;
 public class DogSizeComparator implements Comparator<Dog> {
     @Override
     public int compare(Dog dog1, Dog dog2) {
+
         return convertSize(dog1.getSize()) - convertSize(dog2.getSize());
     }
 

@@ -1,5 +1,7 @@
 package main.java.com.skeldale.model;
 
+import com.sun.jdi.IntegerValue;
+
 import java.util.Objects;
 
 public class Dog extends Pet {
@@ -16,6 +18,11 @@ public class Dog extends Pet {
     public Dog(String size) {
         this.size = size;
     }
+
+    public Dog(int age) {
+        this.age = age;
+    }
+
 
     @Override
     public String toString() {
