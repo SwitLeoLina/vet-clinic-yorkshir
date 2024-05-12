@@ -19,7 +19,7 @@ public class Sandbox_age {
         Arrays.sort(dogsByAge, new Comparator<Dog>() {
             @Override
             public int compare(Dog o1, Dog o2) {
-                return 0;
+                return o1.getAge() - o2.getAge();
             }
         });
 
