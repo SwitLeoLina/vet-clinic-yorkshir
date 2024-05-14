@@ -44,6 +44,9 @@ public class PetService {
             ((Dog) pet).setSize(Dog.Size.valueOf(size));
         }
 
+        System.out.print("Health state (Good / Moderate / Serious / Emergency): ");
+        pet.setHealthState(Main.SCANNER.nextLine());
+
         return pet;
     }
 

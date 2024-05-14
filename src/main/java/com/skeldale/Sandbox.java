@@ -13,7 +13,8 @@ public class Sandbox {
                 new Dog(Dog.Size.XL),
                 new Dog(Dog.Size.XL),
                 new Dog(Dog.Size.XS),
-                new Dog(Dog.Size.S)
+                new Dog(Dog.Size.S),
+                new Dog(Dog.Size.M)
         };
 
         Arrays.sort(dogs, new Comparator<Dog>() {
