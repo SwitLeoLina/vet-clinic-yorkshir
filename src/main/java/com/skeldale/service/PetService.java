@@ -45,7 +45,8 @@ public class PetService {
         }
 
         System.out.print("Health state (Good / Moderate / Serious / Emergency): ");
-        pet.setHealthState(Main.SCANNER.nextLine());
+        String healthState = Main.SCANNER.nextLine();
+        pet.setHealthState(Pet.HealthState.valueOf(healthState));
 
         return pet;
     }

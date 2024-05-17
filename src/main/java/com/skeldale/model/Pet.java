@@ -1,22 +1,22 @@
 package main.java.com.skeldale.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Pet {
-    public static final String Good = "Good";
-    public static final String Moderate = "Moderate";
-    public static final String Serious = "Serious";
-    public static final String Emergency = "Emergency";
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
     private String type;
     private String sex;
     public int age;
     private String name;
     private String ownerName;
+    private final LocalDateTime registrationDate = LocalDateTime.now();
 
-    public String healthState;
+    public HealthState healthState;
     public Pet() {}
-    public Pet(String healthState) {
+    public Pet(HealthState healthState) {
         this.healthState = healthState;
     }
 
@@ -28,6 +28,7 @@ public class Pet {
                 + ", name = " + name
                 + ", owner name = " + ownerName
                 + ", health state = " + healthState
+                + ", registrationDate = " + registrationDate.format(FORMATTER)
                 + "}";
     }
 
@@ -84,7 +85,23 @@ public class Pet {
         this.ownerName = ownerName;
     }
 
-    public String getHealthState() { return healthState;};
-    public void setHealthState(String healthState) { this.healthState = healthState;}
+    public HealthState getHealthState() { return healthState;};
+    public void setHealthState(HealthState healthState) { this.healthState = healthState;}
+
+    public enum HealthState {
+        Emergency(1),
+        Serious(2),
+        Moderate(3),
+        Good(4),
+        UNKNOWN(0);
+        private final int valueHealth;
+        HealthState(int valueHealth) {
+            this.valueHealth = valueHealth;
+        }
+
+        public int getValueHealth() {
+            return valueHealth;
+        }
+    }
 
 }

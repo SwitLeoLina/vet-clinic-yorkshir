@@ -1,11 +1,15 @@
 package main.java.com.skeldale.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Client {
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm a");
     private String firstName;
     private String lastName;
     private String email;
+    private final LocalDateTime registrationClientDate = LocalDateTime.now();
     private Pet pet;
 
     @Override
@@ -30,6 +34,7 @@ public class Client {
                 + "\n\tfirstName = " + firstName
                 + ", lastName = " + lastName
                 + ", email = " + email
+                + ", registrationClientDate = " + registrationClientDate.format(FORMATTER)
                 + ",\n\tpet {" + pet
                 + "\n}";
     }
