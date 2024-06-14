@@ -1,5 +1,6 @@
 package main.java.com.skeldale.model;
 
+import javax.xml.stream.Location;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class Client {
     private String email;
     private final LocalDateTime registrationClientDate = LocalDateTime.now();
     private List<Pet> pets = new ArrayList<>();
+    private Location location;
 
     @Override
     public boolean equals(Object o) {
@@ -36,6 +38,7 @@ public class Client {
                 + "\n\tfirstName = " + firstName
                 + ", lastName = " + lastName
                 + ", email = " + email
+                + ", location = " + location
                 + ", registrationClientDate = " + registrationClientDate.format(FORMATTER)
                 + ",\n\tpet {" + pets
                 + "\n}";
@@ -65,14 +68,26 @@ public class Client {
         return email;
     }
 
-    public List<Pet> getPet() {
+    public List<Pet> getPets() {
         return pets;
     }
 
-    public void setPet(List<Pet> pets) {
+    public void setPets(List<Pet> pets) {
         this.pets = pets;
     }
     public void addPet(Pet pet) {
         pets.add(pet);
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public enum Location {
+        DNIPRO, KYIV, LVIV
     }
 }
