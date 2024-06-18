@@ -45,12 +45,14 @@ public class EntityRegister {
         List<Client> fromDnipro = new ArrayList<>();
         List<Client> fromKyiv = new ArrayList<>();
         List<Client> fromLviv = new ArrayList<>();
+        List<Client> unknownLocation = new ArrayList<>();
 
         for (Client client : clients) {
             switch (client.getLocation()) {
                 case DNIPRO -> fromDnipro.add(client);
                 case KYIV -> fromKyiv.add(client);
                 case LVIV -> fromLviv.add(client);
+                case UNKNOWN -> unknownLocation.add(client);
             }
         }
 
@@ -58,6 +60,7 @@ public class EntityRegister {
         clientsByLocation.put(Client.Location.DNIPRO, fromDnipro);
         clientsByLocation.put(Client.Location.KYIV, fromKyiv);
         clientsByLocation.put(Client.Location.LVIV, fromLviv);
+        clientsByLocation.put(Client.Location.UNKNOWN, unknownLocation);
 
         return clientsByLocation;
     }

@@ -40,8 +40,18 @@ public class PetService {
 
         if (type.equals(DOG_TYPE)) {
             System.out.print("Size (XS / S / M / L / XL): ");
-            String size = Main.SCANNER.nextLine();
-            ((Dog) pet).setSize(Dog.Size.valueOf(size));
+
+            Dog.Size size;
+            String sizeInput = Main.SCANNER.nextLine();
+            try {
+                size = Dog.Size.valueOf(sizeInput);
+            } catch (IllegalArgumentException e) {
+                size = Dog.Size.UNKNOWN;
+                System.out.println("Unable to parse value '" + sizeInput + "'. Using default value: " + Dog.Size.UNKNOWN);
+            }
+
+            ((Dog) pet).setSize(size);
+
         }
 
         System.out.print("Health state (Good / Moderate / Serious / Emergency): ");
