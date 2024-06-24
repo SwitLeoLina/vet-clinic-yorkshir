@@ -7,9 +7,12 @@ import main.java.com.skeldale.service.ClientService;
 import main.java.com.skeldale.service.PetService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+/*import java.util.HashMap;
+ */
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class EntityRegister {
 
@@ -20,13 +23,17 @@ public class EntityRegister {
         List<Client> clients = new ArrayList<>();
         String message = "Do you want to register more clients? (y/n)";
         do {
-            Client client = addClient();
+            Optional<Client> client = addClient();
+            client.ifPresent(clients::add);
+            /*
             if (client != null) {
                 clients.add(client);
             }
+             */
         } while (verifyRepeating(message));
 
-        Map<Client.Location, List<Client>> clientsByLocation = groupClients(clients);
+        Map<Client.Location, List<Client>> clientsByLocation = clients.stream()
+                        .collect(Collectors.groupingBy(Client::getLocation));
 
         printClients(clientsByLocation);
     }
@@ -41,6 +48,7 @@ public class EntityRegister {
         }
     }
 
+    /*
     private Map<Client.Location, List<Client>> groupClients(List<Client> clients) {
         List<Client> fromDnipro = new ArrayList<>();
         List<Client> fromKyiv = new ArrayList<>();
@@ -65,24 +73,19 @@ public class EntityRegister {
         return clientsByLocation;
     }
 
-    private Client addClient() {
-        Client client = clientService.registerNewClient();
+     */
 
-        if (client != null) {
-                /*System.out.println("Do you want to add your pet right now? (Y / N)");
-                String input = Main.SCANNER.nextLine();
-                if(input.equals("Y")) {
-                 */
+    private Optional<Client> addClient() {
+        Optional<Client> client = clientService.registerNewClient();
+        client.ifPresent(this::registerPets);
 
-            registerPets(client);
-            System.out.println(client);
-        }
         return client;
     }
     private void registerPets(Client client) {
         String message = "Do you want to add more pets for this client? (y/n)";
         do {
             addPet(client);
+            System.out.println(client);
         } while (verifyRepeating(message));
     }
 
